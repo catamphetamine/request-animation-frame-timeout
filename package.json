@@ -1,0 +1,50 @@
+{
+  "name": "request-animation-frame-timeout",
+  "version": "2.0.1",
+  "description": "setTimeout() via requestAnimationFrame()",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build:clean": "rimraf ./commonjs/**/* ./modules/**/*",
+    "build:commonjs": "cross-env babel ./source --out-dir ./commonjs --source-maps --ignore *.test.js",
+    "build:es6": "cross-env BABEL_ENV=es6 babel ./source --out-dir ./modules --source-maps --ignore *.test.js",
+    "build": "npm-run-all build:clean build:commonjs build:es6",
+    "test": "mocha --colors --bail --reporter spec \"source/**/*.test.js\" \"test/**/*.test.js\" --recursive",
+    "prepublish": "npm-run-all build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/catamphetamine/request-animation-frame-timeout.git"
+  },
+  "author": "@catamphetamine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/catamphetamine/request-animation-frame-timeout/issues"
+  },
+  "keywords": [
+    "requestAnimationFrame",
+    "setTimeout",
+    "timer"
+  ],
+  "homepage": "https://gitlab.com/catamphetamine/request-animation-frame-timeout#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "chai": "^5.1.1",
+    "cross-env": "^7.0.2",
+    "mocha": "^10.4.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "raf": "^3.4.1"
+  }
+}
