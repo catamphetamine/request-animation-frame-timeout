@@ -1,6 +1,6 @@
 {
   "name": "request-animation-frame-timeout",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "setTimeout() via requestAnimationFrame()",
   "type": "module",
   "exports": {
@@ -14,6 +14,7 @@
   "scripts": {
     "build:clean": "rimraf ./commonjs/**/* ./modules/**/*",
     "build:commonjs": "cross-env babel ./source --out-dir ./commonjs --source-maps --ignore *.test.js",
+    "build:commonjs:package.json": "node scripts/create-commonjs-package-json.js",
     "build:es6": "cross-env BABEL_ENV=es6 babel ./source --out-dir ./modules --source-maps --ignore *.test.js",
     "build": "npm-run-all build:clean build:commonjs build:es6",
     "test": "mocha --colors --bail --reporter spec \"source/**/*.test.js\" \"test/**/*.test.js\" --recursive",
